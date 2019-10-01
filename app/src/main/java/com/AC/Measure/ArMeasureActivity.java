@@ -77,6 +77,7 @@ import java.nio.IntBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -861,7 +862,7 @@ public class ArMeasureActivity extends AppCompatActivity {
 
 			// Create a file in the Pictures/HelloAR album.
 			Bundle bundle = new Bundle();
-			String formattime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date());
+			String formattime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ", Locale.getDefault()).format(new Date());
 			ImageHelper ih = new ImageHelper(context);
 
 			BitmapFactory.Options options = new BitmapFactory.Options();
@@ -935,7 +936,7 @@ public class ArMeasureActivity extends AppCompatActivity {
 					//showSnackbarMessage("Wrote " + out.getName(), false);
 					Display display = getWindowManager().getDefaultDisplay();// 取得螢幕高度
 					int height = display.getHeight();
-					Toast toast = Toast.makeText(context, "照片保存成功", Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(context, "Photo saved successfully", Toast.LENGTH_SHORT);
 					toast.setGravity(Gravity.BOTTOM, 0, height / 10);
 					toast.show();
 				}

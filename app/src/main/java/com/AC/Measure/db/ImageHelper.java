@@ -30,7 +30,7 @@ public class ImageHelper {
         db = database.getWritableDatabase();
     }
 
-    private ContentValues createContentValues(Image image) { // 新增資料動作的設定
+    private ContentValues createContentValues(Image image) { // New data action settings
         ContentValues values = new ContentValues();
         values.put(TableInfo.NAME, image.getName());
         values.put(TableInfo.X, image.getX());

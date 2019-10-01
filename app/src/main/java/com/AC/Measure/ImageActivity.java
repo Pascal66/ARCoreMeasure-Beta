@@ -20,7 +20,7 @@ public class ImageActivity extends TabActivity {
     }
 
     @Override
-    protected void onDestroy() { // 當顯示圖片的 Activity 結束被釋放時
+    protected void onDestroy() { // When the activity showing the image ends is released
         super.onDestroy();
         ImageView.reset(); // 重新設定 ImageView 有關靜態部份共用的變數
     }
@@ -29,20 +29,20 @@ public class ImageActivity extends TabActivity {
         TabHost tabhost = getTabHost();
         Intent intent = new Intent(this, CannyActivity.class);
         intent.putExtras(bundle);
-        tabhost.addTab(tabhost.newTabSpec("坎尼邊緣偵測").setIndicator("坎尼邊緣偵測").setContent(intent)); // 設定第一個 Tab
+        tabhost.addTab(tabhost.newTabSpec("Canni edge detection").setIndicator("Canni edge detection").setContent(intent)); // 設定第一個 Tab
 
         intent = new Intent(this, BinaryActivity.class);
         intent.putExtras(bundle);
-        tabhost.addTab(tabhost.newTabSpec("二值化影像處理").setIndicator("二值化影像處理").setContent(intent)); // 設定第二個 Tab
+        tabhost.addTab(tabhost.newTabSpec("Binary image processing").setIndicator("Binary image processing").setContent(intent)); // 設定第二個 Tab
 
         findViewById(R.id.reset).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView.clearPoint(); // 清除原有在 ImageView 上所選的點
+                ImageView.clearPoint(); // Clear the selected point on the ImageView
                 Display display = getWindowManager().getDefaultDisplay();
-                // 取得螢幕高度
+                // Get the screen height
                 int height = display.getHeight();
-                Toast toast = Toast.makeText(ImageActivity.this, "量測點佈點已清除 !", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(ImageActivity.this, "Measurement point has been cleared !", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.BOTTOM, 0, height / 10);
                 toast.show();
             }

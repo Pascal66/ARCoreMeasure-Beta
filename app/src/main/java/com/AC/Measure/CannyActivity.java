@@ -23,8 +23,8 @@ public class CannyActivity extends Activity {
     }
 
     @Override
-    protected void onPause() { // onPause() 為 TabActivity 所使用
-        iv.setVisibility(View.INVISIBLE); // 隱藏 Canny 圖片
+    protected void onPause() { // onPause() Used by TabActivity
+        iv.setVisibility(View.INVISIBLE); // Hide Canny Pictures
         super.onPause();
     }
 
@@ -36,7 +36,7 @@ public class CannyActivity extends Activity {
 
     private void init() {  // 初始化
         try {
-            BitmapFactory.Options options = new BitmapFactory.Options(); // 防止OOM(Out of Memory 所設定的選項物件
+            BitmapFactory.Options options = new BitmapFactory.Options(); // Prevent OOM (option object set by Out of Memory)
             options.inPreferredConfig = Bitmap.Config.RGB_565;
             options.inPurgeable = true;
             options.inInputShareable = true;

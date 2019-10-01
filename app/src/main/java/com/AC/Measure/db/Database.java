@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class Database extends SQLiteOpenHelper { // 實作與資料庫溝通的物件
+public class Database extends SQLiteOpenHelper { // Implement objects that communicate with the database
 
     private final static int VERSION = 1; // 資料庫版本號
 

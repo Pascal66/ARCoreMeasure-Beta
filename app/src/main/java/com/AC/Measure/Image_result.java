@@ -33,8 +33,8 @@ public class Image_result extends AppCompatActivity {
 
     private void initView() {
         mTablayout = (TabLayout) findViewById(R.id.tabs);
-        mTablayout.addTab(mTablayout.newTab().setText("坎尼邊緣偵測"));
-        mTablayout.addTab(mTablayout.newTab().setText("二值化影像處理"));
+        mTablayout.addTab(mTablayout.newTab().setText("Canni edge detection"));
+        mTablayout.addTab(mTablayout.newTab().setText("Binary image processing"));
         //mTablayout.addTab(mTablayout.newTab().setText("Page three"));
 
         mViewPager = (ViewPager) findViewById(R.id.pager);

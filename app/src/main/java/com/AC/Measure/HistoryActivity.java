@@ -16,10 +16,10 @@ public class HistoryActivity extends AppCompatActivity {
         initView();
     }
     private void initView() {
-        new AlertDialog.Builder(HistoryActivity.this) // 建立互動訊息
-                .setMessage("目前無歷史資料 !")
+        new AlertDialog.Builder(HistoryActivity.this) // Create an interactive message
+                .setMessage("No historical data at present !")
                 .setCancelable(false)
-                .setPositiveButton("返回", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Return", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //context = this;

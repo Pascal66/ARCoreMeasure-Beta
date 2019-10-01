@@ -107,12 +107,12 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { // 當畫布大小被改變後
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { // When the canvas size is changed
 
     }
 
     @Override
-    public void surfaceDestroyed(SurfaceHolder holder) { // 當繪布被釋放後
+    public void surfaceDestroyed(SurfaceHolder holder) { // When the canvas is released
         point = toBitmapPoint(point);
 
         matrix.set(savedMatrix);
@@ -122,7 +122,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) { // 當繪布被觸碰時
+    public boolean onTouchEvent(MotionEvent event) { // When the canvas is touched
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN: {
                 startPoint.x = event.getX();
@@ -170,7 +170,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     }
 
-    private void onDrag(MotionEvent event) { // 當為拖拉事件時
+    private void onDrag(MotionEvent event) { // When it is a drag event
         matrix.set(savedMatrix);
 
         currentPoint.x = event.getX();
@@ -202,7 +202,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         savedMatrix.set(matrix);
     }
 
-    private void onZoom(MotionEvent event) { // 當為放大事件時
+    private void onZoom(MotionEvent event) { // When zooming in on an event
         newDistance = getDistance(event);
         if (newDistance > 10.0f) {
             point = toBitmapPoint(point);
@@ -235,7 +235,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @SuppressLint("NewApi")
-    private void onClick(MotionEvent event) { // 當為點擊事件時
+    private void onClick(MotionEvent event) { // When it is a click event
         setClickPoint(event.getX(), event.getY());
 
         Canvas canvas = holder.lockCanvas();
@@ -252,8 +252,8 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
             insertX();
         else if (point[3] != null) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("是否計算距離？");
-            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            builder.setMessage("Is the distance calculated?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -304,22 +304,22 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
 
                     ih.close();
 
-                    Toast.makeText(context, "儲存完成", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Storage completed", Toast.LENGTH_SHORT).show();
 
                     point[2] = null;
                     point[3] = null;
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("結果");
+                    builder.setTitle("Result");
                     builder.setMessage(message);
-                    builder.setPositiveButton("確定", null);
+                    builder.setPositiveButton("Yes", null);
                     builder.create().show();
 
                     dialog.dismiss();
                 }
 
             });
-            builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -335,14 +335,14 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    private void onNone(MotionEvent event) { // 當為沒有任何事件時
+    private void onNone(MotionEvent event) { // When there is no event
 
     }
 
     @SuppressLint("NewApi")
-    private void insertX() { // 輸入 x
+    private void insertX() { // Input x
         final AlertDialog.Builder builder = new AlertDialog.Builder(context); // 建立互動訊息
-        builder.setTitle("請輸入比例X");
+        builder.setTitle("Please enter the ratio X");
         builder.setCancelable(false);
 
         final EditText et = new EditText(context);
@@ -373,7 +373,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
                         } catch (NumberFormatException e) {
                             // TODO Auto-generated method stub
                             e.printStackTrace();
-                            Toast.makeText(context, "請輸入數字", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Please key in numbers", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -397,7 +397,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         ad.show();
     }
 
-    private void drawPoint(Canvas canvas) { // 畫出點擊所產生的點
+    private void drawPoint(Canvas canvas) { // Draw the point produced by the click
         for (int i=0; i<point.length; i++)
             if (point[i] != null) {
                 canvas.drawCircle(point[i].x, point[i].y, 20.0f, pointPaint);
@@ -407,7 +407,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
             }
     }
 
-    private void setClickPoint(float x, float y) { // 設定觸碰點
+    private void setClickPoint(float x, float y) { // Set touch point
         for (int i=0; i<point.length; i++)
             if (point[i] == null) {
                 point[i] = getClickPoint(x, y);
@@ -432,7 +432,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
             }
     }
 
-    private Point getClickPoint(float x, float y) { // 取得觸碰點
+    private Point getClickPoint(float x, float y) { // Get touch points
         float[] pts = {x, y};
         tmpMatrix.reset();
         matrix.invert(tmpMatrix);
@@ -452,7 +452,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return point;
     }
 
-    private Point[] toBitmapPoint(Point[] point) { // 將觸碰點位置轉換成影像的實際位置
+    private Point[] toBitmapPoint(Point[] point) { // Convert the touch point position to the actual position of the image
         for (int i=0; i<point.length; i++)
             if (point[i] != null)
                 point[i] = getBitmapPoint(point[i]);
@@ -472,7 +472,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return point;
     }
 
-    private Point[] toDispalyPoint(Point[] point) {  // 將觸碰點位置轉換成螢幕的實際位置
+    private Point[] toDispalyPoint(Point[] point) {  // Convert the touch point position to the actual position of the screen
         for (int i=0; i<point.length; i++)
             if (point[i] != null)
                 point[i] = getDisplayPoint(point[i]);
@@ -482,7 +482,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return point;
     }
 
-    private Point getDisplayPoint(Point point) { // 取得觸碰點在螢幕的實際位置
+    private Point getDisplayPoint(Point point) { // Get the touch point on the actual position of the screen
         float[] pts = {(int)(point.x + 0.5f), (int)(point.y + 0.5f)};
         matrix.mapPoints(pts);
         point.x = pts[0];

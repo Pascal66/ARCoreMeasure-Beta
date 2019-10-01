@@ -9,5 +9,4 @@ Use 'jar' tool to zip back to classes.jar or use 'zip' and change extension to .
 Zip back all arcore_client and change extension to .aar
 Replace aar library and rebuild in AndroidStudio.
 
-OpenCV+Tabactivity can be executed normally
 
