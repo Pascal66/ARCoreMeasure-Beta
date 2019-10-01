@@ -1,0 +1,13 @@
+
+Fingerprint=Sony/G3112/G3112:8.0.0/48.1.A.2.112/1877064199:user/release-keys
+Now go to ARCore folder.
+
+Extract arcore-android-sdk-master/libraries/arcore_client.aar
+Go to extracted folder and extract classes.jar
+Edit /com/google/atap/tangoservice/SupportedDevices.class I use MidnightCommander in GNU/Linux system. Shortcut to edit is Shift+F3 then F4 then find similar string to yours fingerprint. In my case it was "dreamltexx/dreamlte:7". I changed this string to "dream2ltexx/dream2lte"
+Use 'jar' tool to zip back to classes.jar or use 'zip' and change extension to .jar.
+Zip back all arcore_client and change extension to .aar
+Replace aar library and rebuild in AndroidStudio.
+
+OpenCV+Tabactivity can be executed normally
+

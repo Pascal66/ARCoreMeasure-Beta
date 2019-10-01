@@ -21,14 +21,14 @@ public class SquareRenderer {
 
     // number of coordinates pervertex in this array
     static final int COORDS_PER_VERTEX = 3;
-    static float coords[] = {
+    static float[] coords = {
             -0.05f,  0.05f, 0.0f,   // top left
             -0.05f, -0.05f, 0.0f,   // bottom left
             0.05f, -0.05f, 0.0f,   // bottom right
             0.05f,  0.05f, 0.0f }; // top right
-    private short drawOrder[] = {0, 1, 2, 0, 2, 3}; // order to draw vertex
+    private short[] drawOrder = {0, 1, 2, 0, 2, 3}; // order to draw vertex
 
-    float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
+    float[] color = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
     public void setVerts(float v0, float v1, float v2,
                          float v3, float v4, float v5,

@@ -15,13 +15,13 @@ public class ImageHelper {
     @SuppressLint("SimpleDateFormat")
     public static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 格式化時間日期
 
-    private static interface TableInfo { // 資料表資訊
-        String TABLE = "image",
-                NAME = "name",
-                X = "x",
-                RESULT = "result",
-                MESSAGE = "message",
-                FORM[] = {NAME, X, RESULT, MESSAGE};
+    private interface TableInfo { // 資料表資訊
+        String TABLE = "image";
+		String NAME = "name";
+		String X = "x";
+		String RESULT = "result";
+		String MESSAGE = "message";
+		String[] FORM = {NAME, X, RESULT, MESSAGE};
     }
     private SQLiteDatabase db;
 
@@ -53,7 +53,7 @@ public class ImageHelper {
     public Image[] getAll() { // 取得所有資料
         Cursor cursor = db.query(TableInfo.TABLE, null, null, null, null, null, TableInfo.NAME + " desc");
         int size = cursor.getCount();
-        Image images[] = null;
+        Image[] images = null;
         if (size != 0) {
             cursor.moveToFirst();
             images = new Image[size];
@@ -74,7 +74,7 @@ public class ImageHelper {
         Cursor cursor = db.query(TableInfo.TABLE, TableInfo.FORM, TableInfo.NAME + " = '" + name + "'", null, null, null, TableInfo.NAME);
         cursor.moveToFirst();
 
-        Image images[]= null;
+        Image[] images = null;
         if (cursor.getCount() > 0) {
             images = new Image[cursor.getCount()];
             for (int i=0; i<images.length; i++) {
@@ -92,7 +92,7 @@ public class ImageHelper {
         Cursor cursor = db.query(TableInfo.TABLE, TableInfo.FORM, TableInfo.NAME + " like '" + name.substring(0, name.lastIndexOf("-") - 1) + "%'", null, null, null, TableInfo.NAME);
         cursor.moveToFirst();
 
-        Image images[]= null;
+        Image[] images = null;
         if (cursor.getCount() > 0) {
             images = new Image[cursor.getCount()];
             for (int i=0; i<images.length; i++) {
@@ -110,8 +110,7 @@ public class ImageHelper {
     public void setAll(Image[] images) { // 輸入所有資料
         db.beginTransaction();
 
-        for (int i=0; i<images.length; i++)
-            db.insert(TableInfo.TABLE, null, createContentValues(images[i]));
+        for (Image image : images) db.insert(TableInfo.TABLE, null, createContentValues(image));
 
         db.setTransactionSuccessful();
         db.endTransaction();

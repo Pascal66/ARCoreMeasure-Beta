@@ -11,7 +11,7 @@
     -->
     <uses-feature
         android:name="android.hardware.camera.ar"
-        android:required="true" />
+        android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -41,7 +41,7 @@
         -->
         <meta-data
             android:name="com.google.ar.core"
-            android:value="required" />
+            android:value="optional" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="0b148442de0ebe36c4bf3cd5803e980c9e954a47" />

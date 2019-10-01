@@ -17,10 +17,10 @@ public class Rect2d {
     }
 
     public Rect2d(Point p1, Point p2) {
-        x = (double) (p1.x < p2.x ? p1.x : p2.x);
-        y = (double) (p1.y < p2.y ? p1.y : p2.y);
-        width = (double) (p1.x > p2.x ? p1.x : p2.x) - x;
-        height = (double) (p1.y > p2.y ? p1.y : p2.y) - y;
+        x = (double) (Math.min(p1.x, p2.x));
+        y = (double) (Math.min(p1.y, p2.y));
+        width = (double) (Math.max(p1.x, p2.x)) - x;
+        height = (double) (Math.max(p1.y, p2.y)) - y;
     }
 
     public Rect2d(Point p, Size s) {

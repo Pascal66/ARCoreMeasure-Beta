@@ -29,7 +29,7 @@ import androidx.core.content.ContextCompat;
 public class CameraPermissionHelper {
     private static final int CAMERA_PERMISSION_CODE = 0;
     private static final String CAMERA_PERMISSION = Manifest.permission.CAMERA;
-    private static final String REQUIRED_PERMISSIONS[] = {
+    private static final String[] REQUIRED_PERMISSIONS = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
     };

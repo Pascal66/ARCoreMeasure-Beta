@@ -21,7 +21,7 @@ public class RectanglePolygonRenderer {
 
     // number of coordinates pervertex in this array
     static final int COORDS_PER_VERTEX = 3;
-    static float coords[] = {
+    static float[] coords = {
             -0.6f,  0.5f, 0.2f,   // top left
             -0.4f, -0.5f, 0.2f,   // bottom left
             0.5f, -0.5f, 0.2f,   // bottom right
@@ -32,7 +32,7 @@ public class RectanglePolygonRenderer {
             0.5f, -0.5f, 0.0f,   // bottom right
             0.5f,  0.5f, 0.0f   // top right
     };
-    private short drawOrder[] = {
+    private short[] drawOrder = {
             0, 1, 2,  0, 2, 3,
             3, 2, 6,  3, 6, 7,
             4, 5, 6,  4, 6, 7,
@@ -41,7 +41,7 @@ public class RectanglePolygonRenderer {
             5, 1, 2,  5, 2, 6
     }; // order to draw vertex
 
-    float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
+    float[] color = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
     public void setVerts(float v0, float v1, float v2,
                          float v3, float v4, float v5,

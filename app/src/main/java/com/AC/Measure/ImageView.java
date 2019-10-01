@@ -25,6 +25,7 @@ import com.AC.Measure.model.Image;
 import com.AC.Measure.model.Point;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     private final int NONE = 3;
     private final int FLAG_COUNT = 5;
 
-    private static Point point[] = new Point[4];
+    private static Point[] point = new Point[4];
     private static boolean holdScalePoint;
     private static float x;
     private static String message;
@@ -279,8 +280,8 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
                     if (context instanceof CannyActivity) {
                         message = "Canny:\n" + message;
 
-                        if (imageMessage.indexOf("Canny") > -1) {
-                            if (imageMessage.indexOf("Binary") > -1)
+                        if (imageMessage.contains("Canny")) {
+                            if (imageMessage.contains("Binary"))
                                 imageMessage = message + imageMessage.substring(imageMessage.indexOf("Binary"), imageMessage.length());
                             else
                                 imageMessage = message;
@@ -289,8 +290,8 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
                     } else {
                         message = "Binary:\n" + message;
 
-                        if (imageMessage.indexOf("Canny") > -1) {
-                            if (imageMessage.indexOf("Binary") > -1)
+                        if (imageMessage.contains("Canny")) {
+                            if (imageMessage.contains("Binary"))
                                 imageMessage = imageMessage.substring(0, imageMessage.indexOf("Binary")) + message;
                             else
                                 imageMessage = imageMessage + message;
@@ -415,7 +416,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
                 if ((i + 1) % 2 == 0) {
                     point = toBitmapPoint(point);
 
-                    Point newPoint[] = findEdges(point[i - 1], point[i], Color.BLACK);
+                    Point[] newPoint = findEdges(point[i - 1], point[i], Color.BLACK);
                     if (newPoint != null) {
                         point[i - 1] = newPoint[0];
                         point[i - 1].setIndex(i - 1);
@@ -432,7 +433,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private Point getClickPoint(float x, float y) { // 取得觸碰點
-        float pts[] = {x, y};
+        float[] pts = {x, y};
         tmpMatrix.reset();
         matrix.invert(tmpMatrix);
         tmpMatrix.mapPoints(pts);
@@ -451,7 +452,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return point;
     }
 
-    private Point[] toBitmapPoint(Point point[]) { // 將觸碰點位置轉換成影像的實際位置
+    private Point[] toBitmapPoint(Point[] point) { // 將觸碰點位置轉換成影像的實際位置
         for (int i=0; i<point.length; i++)
             if (point[i] != null)
                 point[i] = getBitmapPoint(point[i]);
@@ -462,7 +463,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private Point getBitmapPoint(Point point) { // 取得觸碰點在影像的實際位置
-        float pts[] = {point.x, point.y};
+        float[] pts = {point.x, point.y};
         tmpMatrix.reset();
         matrix.invert(tmpMatrix);
         tmpMatrix.mapPoints(pts);
@@ -471,7 +472,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return point;
     }
 
-    private Point[] toDispalyPoint(Point point[]) {  // 將觸碰點位置轉換成螢幕的實際位置
+    private Point[] toDispalyPoint(Point[] point) {  // 將觸碰點位置轉換成螢幕的實際位置
         for (int i=0; i<point.length; i++)
             if (point[i] != null)
                 point[i] = getDisplayPoint(point[i]);
@@ -482,7 +483,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private Point getDisplayPoint(Point point) { // 取得觸碰點在螢幕的實際位置
-        float pts[] = {(int)(point.x + 0.5f), (int)(point.y + 0.5f)};
+        float[] pts = {(int)(point.x + 0.5f), (int)(point.y + 0.5f)};
         matrix.mapPoints(pts);
         point.x = pts[0];
         point.y = pts[1];
@@ -538,7 +539,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private Point[] findEdges(Point point1, Point point2, int findColor) { // 搜尋邊緣線上的黑點
-        Point point[] = null;
+        Point[] point = null;
         Point result1 = getFirstEdge(point1, point2, findColor);
         if (result1 != null) {
             Point result2 = getFirstEdge(point2, result1, findColor);
@@ -649,7 +650,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         return point;
     }
 
-    public static void setPoint(Point points[]) { // 取定觸碰點
+    public static void setPoint(Point[] points) { // 取定觸碰點
         if (points != null) {
             point = points;
 
@@ -659,8 +660,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public static void clearPoint() { // 清除觸碰點
-        for (int i=0; i<point.length; i++)
-            point[i] = null;
+        Arrays.fill(point, null);
         holdScalePoint = false;
         x = 0.0f;
     }
@@ -678,8 +678,7 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public static void reset() {
-        for (int i=0; i<point.length; i++)
-            point[i] = null;
+        Arrays.fill(point, null);
         message = null;
         x = 0.0f;
         holdScalePoint = false;
