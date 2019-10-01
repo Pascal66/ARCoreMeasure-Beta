@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\GS\\example\\TEST\\ACMeasure-Beta-1.2.3\\ARCoreMeasure-master\\openCVLibrary3.4.6\\src\\main\\aidl\\org\\opencv\\engine\\OpenCVEngineInterface.aidl
+ * Original file: C:\\Users\\Pascal\\AndroidstudioProjects\\ARCoreMeasure-Beta\\openCVLibrary3.4.6\\src\\main\\aidl\\org\\opencv\\engine\\OpenCVEngineInterface.aidl
  */
 package org.opencv.engine;
 /**
