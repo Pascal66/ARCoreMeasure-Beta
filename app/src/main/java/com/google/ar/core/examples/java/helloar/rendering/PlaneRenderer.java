@@ -311,12 +311,7 @@ public class PlaneRenderer {
         }
         Collections.sort(
                 sortedPlanes,
-                new Comparator<SortablePlane>() {
-                    @Override
-                    public int compare(SortablePlane a, SortablePlane b) {
-                        return Float.compare(a.distance, b.distance);
-                    }
-                });
+                (a, b) -> Float.compare(a.distance, b.distance));
 
         float[] cameraView = new float[16];
         cameraPose.inverse().toMatrix(cameraView, 0);

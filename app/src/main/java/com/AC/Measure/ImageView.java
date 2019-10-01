@@ -520,17 +520,13 @@ public class ImageView extends SurfaceView implements SurfaceHolder.Callback {
         if (blackPointMap.size() > 0) {
             List<Map.Entry<Point, Float>> list = new ArrayList<Map.Entry<Point, Float>>(blackPointMap.entrySet());
             if (list.size() > 1)
-                Collections.sort(list, new Comparator<Map.Entry<Point, Float>>(){
-
-                    public int compare(Map.Entry<Point, Float> entry1, Map.Entry<Point, Float> entry2){
-                        if (entry1.getValue() > entry2.getValue())
-                            return 1;
-                        else if (entry1.getValue() == entry2.getValue())
-                            return 0;
-                        else
-                            return -1;
-                    }
-
+                Collections.sort(list, (entry1, entry2) -> {
+                    if (entry1.getValue() > entry2.getValue())
+                        return 1;
+                    else if (entry1.getValue() == entry2.getValue())
+                        return 0;
+                    else
+                        return -1;
                 });
             point = list.get(0).getKey();
         }

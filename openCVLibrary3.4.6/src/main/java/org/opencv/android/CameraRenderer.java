@@ -46,7 +46,7 @@ public class CameraRenderer extends CameraGLRendererBase {
                 Log.e(LOGTAG, "Camera is not available (in use or does not exist): " + e.getLocalizedMessage());
             }
 
-            if(mCamera == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            if(mCamera == null) {
                 boolean connected = false;
                 for (int camIdx = 0; camIdx < Camera.getNumberOfCameras(); ++camIdx) {
                     Log.d(LOGTAG, "Trying to open camera with new open(" + camIdx + ")");

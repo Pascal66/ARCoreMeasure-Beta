@@ -244,7 +244,7 @@ public class ArMeasureActivity extends AppCompatActivity {
 				@Override
 				public void onClick(View view) {
 					try {
-						int index = Integer.valueOf(view.getTag().toString());
+						int index = Integer.parseInt(view.getTag().toString());
 						logStatus("click index cube: " + index);
 						glSerfaceRenderer.setNowTouchingPointIndex(index);
 						glSerfaceRenderer.showMoreAction();
